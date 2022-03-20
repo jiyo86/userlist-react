@@ -15,6 +15,11 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.jumbotron,
+.userlist {
+  background: #fff;
+  padding: 20px;
+}
 
 .App-header {
   background-color: #282c34;
@@ -37,7 +42,18 @@
   background: #61dafb;
   max-height: 100px;
   text-align: left;
-  margin: 32px 0;
+  padding: 32px 20px;
+  margin: 0;
+}
+.navbar {
+  background: #61dafb;
+}
+.navbar a {
+  padding: 10px 20px;
+  text-decoration: none;
+}
+.navbar a:hover {
+  text-decoration: underline;
 }
 .btn-primary {
   background: #019cdc;
@@ -69,5 +85,13 @@
 }
 .footer {
   background: #000;
+  color: #fff;
   min-height: 300px;
+}
+.grid {
+  background: #fff;
+  min-height: 200px;
+}
+h3 {
+  padding: 15px 0;
 }

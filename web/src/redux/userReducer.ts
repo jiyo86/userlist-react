@@ -9,7 +9,7 @@ export interface userType {
   firstname: string;
   lastname: string;
   email: string;
-  id: string;
+  id?: string;
 }
 export interface userState {
   loading: boolean;

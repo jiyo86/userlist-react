@@ -23,13 +23,16 @@ export const fetchUserList = () => {
 export const addUser = (user: userType) => {
   return (dispatch: Dispatch<Action>) => {
     //dispatch({ type: ActionType.USER_FETCH_REQUEST });
+    console.log("user", user);
     axios
       .post("http://3.83.122.242:8080/adduser", user)
-      .then((response) =>
-        dispatch({
-          type: ActionType.USER_FETCH_SUCCESS,
-          payload: response.data,
-        })
+      .then(
+        (response) =>
+          dispatch({
+            type: ActionType.USER_FETCH_SUCCESS,
+            payload: response.data,
+          }),
+        fetchUserList()
       )
       .catch((error) =>
         dispatch({ type: ActionType.USER_FETCH_FAILURE, payload: error })
