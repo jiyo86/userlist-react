@@ -1,0 +1,28 @@
+version: "2"
+services:
+  server:
+    image: node/api
+    restart: always
+    ports:
+      - "808:8080"
+    volumes:
+      - ./server:/server
+      - /server/node_modules
+    depends_on:
+      - mongodb
+    networks:
+      - app-net
+  mongodb:
+    image: mongo
+    restart: always
+    container_name: mongodb
+    volumes:
+      - ./data-node:/data/db
+    ports:
+      - 27017:27017
+    command: mongod --noauth
+    networks:
+      - appnetwork
+networks:
+  app-net:
+    driver: bridge
