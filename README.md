@@ -5,3 +5,10 @@ Building teh application using Docker
 
 run docker-compose build
 docker-compose run
+
+# Server
+node express app to build the backend api connecting to mongodb
+
+# web
+
+frontend react application 
