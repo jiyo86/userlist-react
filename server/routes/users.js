@@ -7,6 +7,6 @@ router.use((req, res, next) => {
   next();
 });
 router.get("/userlist", users.userlist);
-router.post("/adduser", users.adduser);
+router.post("/adduser", userController.validate("createUser"), users.adduser);
 
 module.exports = router;
