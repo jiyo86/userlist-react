@@ -1,5 +1,5 @@
 # Use a lighter version of Node as a parent image
-FROM node:alpine as node/api
+FROM node:alpine
 # Set the working directory to /api
 WORKDIR /server
 # copy package.json into the container at /api
