@@ -22,7 +22,8 @@ services:
       - 27017:27017
     command: mongod --noauth
     networks:
-      - appnetwork
+      - app-net
 networks:
   app-net:
     driver: bridge
+    
