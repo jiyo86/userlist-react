@@ -3,17 +3,14 @@ Project to build redux react app using typescript
 This is a fullstack application using reactjs nodejs and mongo Db.
 Building teh application using Docker
 
-run docker-compose build
-docker-compose run
-
 # Server
 node express app to build the backend api connecting to mongodb
 cd server
 
 # Mongodb
 docker network create app-net
-docker volume create dbdata
-docker volume create dbconfig
+docker volume create dbdata \n
+docker volume create dbconfig \n
 docker run --name db -p 27017:27017 -v dbdata:/data/db -v dbconfig:/data/configdb --network app-net -d mongo
 
 # node
