@@ -36,12 +36,14 @@ const adduser = async (req, resp, next) => {
   }
 };
 
-exports.validate = (method) => {
+const validate = (method) => {
   switch (method) {
     case "createUser": {
-      body("firstname").exists().isAlpha().isLength({ max: 20 });
-      body("lastname").exists().isAlpha().isLength({ max: 20 });
-      body("email").exists().isEmail();
+      return [
+        body("firstname").exists().isAlpha().isLength({ max: 20 }),
+        body("lastname").exists().isAlpha().isLength({ max: 20 }),
+        body("email").exists().isEmail(),
+      ];
     }
   }
 };
@@ -49,4 +51,5 @@ exports.validate = (method) => {
 module.exports = {
   adduser,
   userlist,
+  validate,
 };
