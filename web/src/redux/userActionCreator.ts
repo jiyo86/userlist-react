@@ -7,35 +7,28 @@ export const fetchUserList = () => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({ type: ActionType.USER_FETCH_REQUEST });
     axios
-      .get("http://3.83.122.242:8080/userlist")
-      .then((response) =>
+      .get(`${process.env.REACT_APP_BACKEND_API}/userlist`)
+      .then((response) => {
         dispatch({
           type: ActionType.USER_FETCH_SUCCESS,
           payload: response.data,
-        })
-      )
-      .catch((error) =>
-        dispatch({ type: ActionType.USER_FETCH_FAILURE, payload: error })
-      );
+        });
+      })
+      .catch((error) => {
+        dispatch({ type: ActionType.USER_FETCH_FAILURE, payload: error });
+      });
   };
 };
 
-export const addUser = (user: userType) => {
-  return (dispatch: Dispatch<Action>) => {
-    //dispatch({ type: ActionType.USER_FETCH_REQUEST });
-    console.log("user", user);
-    axios
-      .post("http://3.83.122.242:8080/adduser", user)
-      .then(
-        (response) =>
-          dispatch({
-            type: ActionType.USER_FETCH_SUCCESS,
-            payload: response.data,
-          }),
-        fetchUserList()
-      )
-      .catch((error) =>
-        dispatch({ type: ActionType.USER_FETCH_FAILURE, payload: error })
-      );
-  };
+export const addUser = async (user: userType) => {
+  const data = await axios
+    .post(`${process.env.REACT_APP_BACKEND_API}/adduser`, user)
+    .then((response) => {
+      return response.status;
+    })
+    .catch((error) => {
+      console.log("err", error);
+      return error;
+    });
+  return data;
 };

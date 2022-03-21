@@ -1,28 +1,30 @@
-import React, { useEffect, ReactElement, Dispatch } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserList } from "../redux/userActionCreator";
 import { ApplicationState } from "../redux/store";
 import { userType } from "../redux/userReducer";
 import { Spinner } from "react-bootstrap";
+import { Dispatch } from "redux";
 
 export const UserList = (): JSX.Element => {
-  const userList = useSelector((state) => (state as ApplicationState).user);
+  const userlist = useSelector((state) => (state as ApplicationState).user);
   const dispatch: Dispatch<any> = useDispatch();
   useEffect(() => {
-    //  dispatch(fetchUserList());
-  });
-  console.log("user", userList);
+    dispatch(fetchUserList());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
+
   return (
     <>
       <h1 className="heading">User List</h1>
       <div className="userlist">
         <div className="grid">
-          {userList.loading ? (
+          {userlist.loading ? (
             <Spinner animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
             </Spinner>
-          ) : userList?.data.length > 0 ? (
+          ) : userlist?.data.length > 0 ? (
             <table className="table table-striped table-bordered">
               <thead className="thead-dark">
                 <tr>
@@ -32,7 +34,7 @@ export const UserList = (): JSX.Element => {
                 </tr>
               </thead>
               <tbody>
-                {userList.data.map((user: userType, index: number) => {
+                {userlist?.data?.map((user: userType, index: number) => {
                   return (
                     <tr key={index}>
                       <td>{user?.firstname}</td>
