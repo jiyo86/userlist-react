@@ -1,7 +1,7 @@
 version: "2"
 services:
   server:
-    image: node/api
+    container: server
     restart: always
     ports:
       - "808:8080"
@@ -26,4 +26,3 @@ services:
 networks:
   app-net:
     driver: bridge
-    
