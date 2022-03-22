@@ -5,7 +5,7 @@ services:
     build: server
     restart: always
     ports:
-      - "808:8080"
+      - "8080:8080"
     volumes:
       - ./server:/server
       - /server/node_modules
@@ -23,6 +23,16 @@ services:
     ports:
       - 27017:27017
     command: mongod --noauth
+    networks:
+      - app-net
+  web:
+    container_name: web
+    build: web
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - server
     networks:
       - app-net
 networks:
