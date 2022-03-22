@@ -1,7 +1,8 @@
 version: "2"
 services:
   server:
-    container: server
+    container_name: server
+    build: server
     restart: always
     ports:
       - "808:8080"
