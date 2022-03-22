@@ -16,9 +16,10 @@ services:
   mongodb:
     image: mongo
     restart: always
-    container_name: mongodb
+    container_name: db
     volumes:
       - ./data-node:/data/db
+      - ./dbconfig:/data/configdb
     ports:
       - 27017:27017
     command: mongod --noauth
